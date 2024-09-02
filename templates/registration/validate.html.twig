@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validate{% endblock %}
+
+{% block body %}
+
+{{ form_start(validateForm) }}
+{{ form_row(validateForm.sendConfirmationMail) }}
+{{ form_end(validateForm) }}
+{% endblock %}

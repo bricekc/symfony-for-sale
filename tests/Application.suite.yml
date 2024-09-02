@@ -1,0 +1,14 @@
+actor: ApplicationTester
+suite_namespace: App\Tests\Application
+modules:
+    # enable helpers as array
+    enabled:
+        - \App\Tests\Support\Helper\BlameablePersist:
+            depends: Symfony
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+        - Asserts:
+        - Doctrine2:
+            depends: Symfony
+            cleanup: true

@@ -1,0 +1,15 @@
+test:
+  tags:
+    - php8.1
+    - composer
+    - npm
+    - node.js
+  script:
+    - composer install
+    - npm ci
+    - npm run dev
+    - composer test:codecept
+  artifacts:
+    paths:
+      - codeception/tests/_output
+    when: on_failure

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdvertisementController!{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ advertisement.title }}</h5>
+            <p class="card-text">{{ advertisement.description }}</p>
+            <p class="card-text">{{ advertisement.price }}</p>
+            <p class="card-text">{{ advertisement.createdAt.format('d/m/Y') }}</p>
+            {% if advertisement.updatedAt is not null %}
+                <p class="card-text">{{ advertisement.updatedAt.format('d/m/Y') }}</p>
+            {% endif %}
+            <a href="{{ path('app_user', {'id': advertisement.owner.id}) }}" class="badge bg-accent1">{{ advertisement.owner.firstName }}</a>
+            <a href="{{ path('app_category_show', {'id': advertisement.category.id}) }}" class="btn btn-primary">{{ advertisement.category.name }}</a>
+            {% if is_granted("EDIT_DELETE_ADVERTISEMENT", advertisement) %}
+            <a href="{{ path('app_advertisement_update', {'id': advertisement.id}) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ path('app_advertisement_delete', {'id': advertisement.id}) }}" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

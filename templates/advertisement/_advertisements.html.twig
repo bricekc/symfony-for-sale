@@ -1,0 +1,12 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') and user_id != null and app.user.id == user_id%}
+    <h1>Mes annonces</h1>
+{% endif %}
+
+<ul class="list-group">
+{% for advertisement in advertisements %}
+    <li class="list-group-item">
+        <a href="{{ path('app_advertisement_show', {'id': advertisement.id}) }}"><span class="badge bg-secondary fs-6 fw-normal">{{ advertisement.category.name }}</span> {{ advertisement.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+{{ knp_pagination_render(advertisements) }}

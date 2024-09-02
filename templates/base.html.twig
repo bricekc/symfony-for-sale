@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-accent1" href="#">Navbar <i class="bi bi-boombox-fill" aria-hidden="true"></i></a>
+                    {% for messages in app.flashes('succes') %}
+                        <div class="alert alert-danger" role="alert">{{ messages }}</div>
+                    {% endfor %}
+                    {% for messages in app.flashes('error') %}
+                        <div class="alert alert-danger" role="alert">{{ messages }}</div>
+                    {% endfor %}
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                     <a class="btn btn-primary" href="{{ path("app_user", {id: app.user.id}) }}">Mes annonces</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('app_logout') }}" class="btn btn-danger">{{ app.user.firstname ?? 'Utilisateur Anonyme' }}</a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+                        {% endif %}
+                        <form class="d-flex" role="search" action="{{ path('app_advertisement' , {_locale: app.request.locale}) }}" method="get">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                            <button class="btn btn-outline-success" type="submit">
+                                <svg class="bi ms-auto">
+                                    <use href="{{ asset('build/bootstrap-icons.svg#search') }}">search-button</use>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center w-1" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (light)">
+                                <svg class="bi my-1 theme-icon-active"><use href="{{ asset('build/bootstrap-icons.svg#sun-fill') }}"></use></svg>
+                                <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center active w-1" data-bs-theme-value="light" aria-pressed="true">
+                                        <svg class="bi me-2 opacity-50 theme-icon"><use href="{{ asset('build/bootstrap-icons.svg#sun-fill') }}"></use></svg>
+                                        Light
+                                        <svg class="bi ms-auto d-none"><use href="{{ asset('build/bootstrap-icons.svg#check2') }}"></use></svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center w-1" data-bs-theme-value="dark" aria-pressed="false">
+                                        <svg class="bi me-2 opacity-50 theme-icon"><use href="{{ asset('build/bootstrap-icons.svg#moon-stars-fill') }}"></use></svg>
+                                        Dark
+                                        <svg class="bi ms-auto d-none"><use href="{{ asset('build/bootstrap-icons.svg#check2') }}"></use></svg>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center w-1" data-bs-theme-value="auto" aria-pressed="false">
+                                        <svg class="bi me-2 opacity-50 theme-icon"><use href="{{ asset('build/bootstrap-icons.svg#circle-half') }}"></use></svg>
+                                        Auto
+                                        <svg class="bi ms-auto d-none"><use href="{{ asset('build/bootstrap-icons.svg#check2') }}"></use></svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </div>
+                </div>
+            </nav>
+        {% block body %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+$primary: #f1e2d2;
+$secondary: #c76328;
+$success: #5aa41b;
+$info: #dd8c5e;
+$warning: #fec063;
+$danger: #f00e63;
+$light: #f1e2d2;
+$dark: #191713;
+$accent1: #614a2e;
+//$accent2: #75794b;
+//$accent3: #aba593;
+
+$theme-colors: (
+        "light":      $light,
+        "dark":       $dark,
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "info":       $info,
+        //"accent2":    $accent2,
+        //"accent3":    $accent3,
+        "success":    $success,
+        "warning":    $warning,
+        "danger":     $danger,
+);
+
+$custom-colors: (
+        "accent1":    $accent1
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+//@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+//@import "~bootstrap/scss/type";
+//@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+//@import "~bootstrap/scss/grid";
+//@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+//@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+//@import "~bootstrap/scss/card";
+//@import "~bootstrap/scss/accordion";
+//@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+//@import "~bootstrap/scss/alert";
+//@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/list-group";
+//@import "~bootstrap/scss/close";
+//@import "~bootstrap/scss/toasts";
+//@import "~bootstrap/scss/modal";
+//@import "~bootstrap/scss/tooltip";
+//@import "~bootstrap/scss/popover";
+//@import "~bootstrap/scss/carousel";
+//@import "~bootstrap/scss/spinners";
+//@import "~bootstrap/scss/offcanvas";
+//@import "~bootstrap/scss/placeholders";
+@import "~bootstrap-icons";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
+
+
+.list-group :nth-child(2n) {
+    background-color: $info;
+}
+
+svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.active .bi {
+    display: block !important;
+}

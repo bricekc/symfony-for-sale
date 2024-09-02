@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    deleteAdvertisement
+{% endblock %}
+
+{% block body %}
+    <h1>Suppression de : </h1>
+    {{ advertisement.title }}
+
+    {{ form_start(form, {'attr': {'onsubmit' : 'return confirm("êtes vous sur de vouloir supprimer cette utilisateur");'}} )}}
+    {{ form_row(form.delete, { 'label': 'Supprimer' }) }}
+    <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}">
+    {{ form_row(form.cancel, { 'label': 'Annuler' }) }}
+    {{ form_end(form) }}
+
+    <script>
+    </script>
+{% endblock %}
+

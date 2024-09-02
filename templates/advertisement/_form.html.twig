@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}advertisement{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+
+            {{ form_row(form.title, {'label' : 'title', 'attr': {'class': 'form-control'}}) }}
+
+            {{ form_row(form.description, {'label' : 'description', 'attr': {'class': 'form-control'}}) }}
+
+            {{ form_row(form.price, {'label' : 'price', 'attr': {'class': 'form-control'}}) }}
+
+            {{ form_row(form.location, {'label' : 'location', 'attr': {'class': 'form-control'}}) }}
+
+            {{ form_row(form.category, {'label' : 'category', 'attr': {'class': 'form-control'}}) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
+

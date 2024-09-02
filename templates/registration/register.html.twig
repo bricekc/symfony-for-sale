@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <h1>Inscription</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm, {'label' : "Inscription"}) }}
+        {{ form_row(registrationForm.email, {'label' : "Mail"}) }}
+        {{ form_row(registrationForm.firstname, {'label' : "Prénom"}) }}
+        {{ form_row(registrationForm.lastname, {'label' : "Nom"}) }}
+        {{ form_row(registrationForm.password, {
+            label: 'Mot de passe',
+            attr: {'autocomplete' : "new-password"}
+        }) }}
+        <button type="submit" class="btn bg-primary">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
